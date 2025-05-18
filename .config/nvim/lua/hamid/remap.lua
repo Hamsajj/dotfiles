@@ -1,0 +1,66 @@
+local which_key = require "which-key"
+local builtin = require('telescope.builtin')
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('user_lsp_attach', { clear = true }),
+  callback = function(event)
+    local opts = { buffer = event.buf }
+
+    -- LSP mappings using new which-key spec
+    which_key.add({
+      { "gd",         vim.lsp.buf.definition,       desc = "Go to definition",          buffer = event.buf },
+      { "gl",         vim.diagnostic.open_float,    desc = "Open diagnostic float",     buffer = event.buf },
+      { "K",          vim.lsp.buf.hover,            desc = "Show hover information",    buffer = event.buf },
+      { "<leader>l",  group = "LSP",                buffer = event.buf },
+      { "<leader>la", vim.lsp.buf.code_action,      desc = "Code action",               buffer = event.buf },
+      { "<leader>lr", vim.lsp.buf.references,       desc = "References",                buffer = event.buf },
+      { "<leader>ln", vim.lsp.buf.rename,           desc = "Rename",                    buffer = event.buf },
+      { "<leader>lw", vim.lsp.buf.workspace_symbol, desc = "Workspace symbol",          buffer = event.buf },
+      { "<leader>ld", vim.diagnostic.open_float,    desc = "Open diagnostic float",     buffer = event.buf },
+      { "[d",         vim.diagnostic.goto_next,     desc = "Go to next diagnostic",     buffer = event.buf },
+      { "]d",         vim.diagnostic.goto_prev,     desc = "Go to previous diagnostic", buffer = event.buf },
+    })
+
+    -- https://www.mitchellhanberg.com/modern-format-on-save-in-neovim/
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = event.buf,
+      callback = function()
+        vim.lsp.buf.format { async = false, id = event.data.client_id }
+      end
+    })
+  end,
+})
+
+-- Non-LSP mappings using new which-key spec
+which_key.add({
+  { "<C-d>",     "<C-d>zz",                                              desc = "Half page down and center" },
+  { "<C-u>",     "<C-u>zz",                                              desc = "Half page up and center" },
+  { "<leader>/", "<Plug>(comment_toggle_linewise_current)",              desc = "Toggle comment" },
+  { "<leader>e", vim.cmd.Ex,                                             desc = "Open file explorer" },
+  { "<leader>p", '"_dP',                                                 desc = "Paste without overwrite" },
+  { "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", desc = "Search and replace word under cursor" },
+  { "<leader>t", ":Today<CR>",                                           desc = "Open today's note" },
+  { "J",         "mzJ`z",                                                desc = "Join lines and keep cursor position" },
+  { "N",         "Nzzzv",                                                desc = "Previous search result and center" },
+  { "Q",         "<nop>",                                                desc = "Disable Ex mode" },
+  { "n",         "nzzzv",                                                desc = "Next search result and center" },
+})
+
+-- Telescope mappings using new which-key spec
+which_key.add({
+  { "<leader>f",  group = "Find" },
+  { "<leader>ff", builtin.find_files, desc = "Find files" },
+  { "<leader>fg", builtin.git_files,  desc = "Find git files" },
+  { "<leader>fl", builtin.live_grep,  desc = "Live grep" },
+  { ";",          builtin.buffers,    desc = "Find Buffers" },
+})
+
+-- Visual mode mappings using new which-key spec
+which_key.add({
+  { "J",         ":m '>+1<CR>gv=gv",                       desc = "Move selection down", mode = "v" },
+  { "K",         ":m '<-2<CR>gv=gv",                       desc = "Move selection up",   mode = "v" },
+  { "<leader>/", "<Plug>(comment_toggle_linewise_visual)", desc = "Toggle comment",      mode = "v" },
+})
+
+-- Insert mode mapping (keep as regular keymap since which-key doesn't handle these)
+vim.keymap.set('i', '<Right>', '<Right>', { noremap = true }) -- Make the right arrow behave normally in insert mode

@@ -1,0 +1,9 @@
+.run
+test-helpers
+.envrc
+.idea
+.secrets
+.secrets.*
+lab
+.DS_Store
+

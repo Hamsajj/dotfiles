@@ -1,0 +1,1 @@
+/Users/HSAJJADI/.dotfiles/vimrc
