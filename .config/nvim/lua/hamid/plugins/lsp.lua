@@ -84,7 +84,6 @@ return {
                 { name = 'luasnip',           keyword_length = 2 },
                 { name = 'buffer',            keyword_length = 3 },
                 { name = 'friendly-snippets', keyword_length = 2 },
-
             },
             mapping = cmp.mapping.preset.insert({
                 ['<Tab>'] = cmp.mapping(function(fallback)

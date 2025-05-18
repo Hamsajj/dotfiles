@@ -62,5 +62,15 @@ which_key.add({
     { "<leader>/", "<Plug>(comment_toggle_linewise_visual)", desc = "Toggle comment",      mode = "v" },
 })
 
+-- Register cmp mappings with which-key for documentation purposes
+-- Note: These are just for documentation, the actual mappings are handled by cmp
+which_key.add({
+    { "<Tab>",   desc = "Next completion item / Trigger completion", mode = "i" },
+    { "<S-Tab>", desc = "Previous completion item",                  mode = "i" },
+    { "<C-.>",   desc = "Trigger completion",                        mode = { "i", "c" } },
+    { "<C-CR>",  desc = "Smart LSP action/completion",               mode = { "i", "n", "v" } },
+    { "<CR>",    desc = "Confirm completion",                        mode = "i" },
+})
+
 -- Insert mode mapping (keep as regular keymap since which-key doesn't handle these)
 vim.keymap.set('i', '<Right>', '<Right>', { noremap = true }) -- Make the right arrow behave normally in insert mode
