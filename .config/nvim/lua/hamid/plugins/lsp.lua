@@ -84,11 +84,17 @@ return {
                 { name = 'luasnip',           keyword_length = 2 },
                 { name = 'buffer',            keyword_length = 3 },
                 { name = 'friendly-snippets', keyword_length = 2 },
+
             },
             mapping = cmp.mapping.preset.insert({
                 ['<Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
-                        cmp.select_next_item()
+                        local selected = cmp.get_selected_entry()
+                        if selected then
+                            cmp.confirm({ select = false })
+                        else
+                            cmp.select_next_item()
+                        end
                     elseif vim.fn.col('.') ~= 1 and vim.fn.getline('.'):sub(vim.fn.col('.') - 1, vim.fn.col('.') - 1):match('%s') == nil then
                         cmp.complete()
                     else
