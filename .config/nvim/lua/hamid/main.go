@@ -6,4 +6,7 @@ import (
 
 func main() {
 	fmt.Println("Hello World")
+	if err != nil {
+		return err
+	}
 }

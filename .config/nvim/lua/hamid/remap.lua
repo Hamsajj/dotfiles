@@ -6,6 +6,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(event)
         local opts = { buffer = event.buf }
 
+        local lint = require("lint")
         -- LSP mappings using new which-key spec
         which_key.add({
             { "gd",         vim.lsp.buf.definition,       desc = "Go to definition",          buffer = event.buf },
@@ -17,6 +18,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             { "<leader>ln", vim.lsp.buf.rename,           desc = "Rename",                    buffer = event.buf },
             { "<leader>lw", vim.lsp.buf.workspace_symbol, desc = "Workspace symbol",          buffer = event.buf },
             { "<leader>ld", vim.diagnostic.open_float,    desc = "Open diagnostic float",     buffer = event.buf },
+            { "<leader>li", lint.try_lint,                desc = "Lint current file",         buffer = event.buf },
             { "[d",         vim.diagnostic.goto_next,     desc = "Go to next diagnostic",     buffer = event.buf },
             { "]d",         vim.diagnostic.goto_prev,     desc = "Go to previous diagnostic", buffer = event.buf },
         })

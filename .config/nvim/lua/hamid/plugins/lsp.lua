@@ -39,7 +39,7 @@ return {
                 "ruff",
                 "rust_analyzer",
                 "gopls",
-                "eslint"
+                "eslint",
             },
             handlers = {
                 function(server_name)
