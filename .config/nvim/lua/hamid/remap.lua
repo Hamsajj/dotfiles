@@ -43,7 +43,6 @@ which_key.add({
 		":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
 		desc = "Search and replace word under cursor",
 	},
-	{ "<leader>t", ":Today<CR>", desc = "Open today's note" },
 	{
 		"J",
 		"mzJ`z",
@@ -85,5 +84,18 @@ which_key.add({
 	{ "<leader>p", ":bprev<CR>", desc = "Prev buffer", mode = "n" },
 })
 
+which_key.add({
+	{
+		"<leader>w",
+		function()
+			local picked_window_id = require("window-picker").pick_window()
+			if picked_window_id then
+				vim.api.nvim_set_current_win(picked_window_id)
+			end
+		end,
+		desc = "Window picker",
+		mode = "n",
+	},
+})
 -- Insert mode mapping (keep as regular keymap since which-key doesn't handle these)
 vim.keymap.set("i", "<Right>", "<Right>", { noremap = true }) -- Make the right arrow behave normally in insert mode
