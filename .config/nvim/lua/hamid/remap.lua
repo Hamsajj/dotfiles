@@ -24,12 +24,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
         })
 
         -- https://www.mitchellhanberg.com/modern-format-on-save-in-neovim/
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = event.buf,
-            callback = function()
-                vim.lsp.buf.format { async = false, id = event.data.client_id }
-            end
-        })
+        --vim.api.nvim_create_autocmd("BufWritePre", {
+        --   buffer = event.buf,
+        -- callback = function()
+        --   vim.lsp.buf.format { async = false, id = event.data.client_id }
+        -- end
+        --})
     end,
 })
 
@@ -55,6 +55,7 @@ which_key.add({
     { "<leader>fg", builtin.git_files,  desc = "Find git files" },
     { "<leader>fl", builtin.live_grep,  desc = "Live grep" },
     { ";",          builtin.buffers,    desc = "Find Buffers" },
+
 })
 
 -- Visual mode mappings using new which-key spec
@@ -72,6 +73,11 @@ which_key.add({
     { "<C-.>",   desc = "Trigger completion",                        mode = { "i", "c" } },
     { "<C-CR>",  desc = "Smart LSP action/completion",               mode = { "i", "n", "v" } },
     { "<CR>",    desc = "Confirm completion",                        mode = "i" },
+})
+
+which_key.add({
+    { "<leader>n", ":bnext<CR>", desc = "Next buffer", mode = "n" },
+    { "<leader>p", ":bprev<CR>", desc = "Prev buffer", mode = "n" },
 })
 
 -- Insert mode mapping (keep as regular keymap since which-key doesn't handle these)
