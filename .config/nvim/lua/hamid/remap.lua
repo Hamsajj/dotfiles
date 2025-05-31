@@ -1,9 +1,11 @@
 local which_key = require("which-key")
 local builtin = require("telescope.builtin")
 
+print("But here!")
 vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("user_lsp_attach", { clear = true }),
+	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 	callback = function(event)
+		print("I'm hrere")
 		local lint = require("lint")
 		-- LSP mappings using new which-key spec
 		which_key.add({
@@ -20,14 +22,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			{ "[d", vim.diagnostic.goto_next, desc = "Go to next diagnostic", buffer = event.buf },
 			{ "]d", vim.diagnostic.goto_prev, desc = "Go to previous diagnostic", buffer = event.buf },
 		})
-
 		-- https://www.mitchellhanberg.com/modern-format-on-save-in-neovim/
-		--vim.api.nvim_create_autocmd("BufWritePre", {
-		--   buffer = event.buf,
-		-- callback = function()
-		--   vim.lsp.buf.format { async = false, id = event.data.client_id }
-		-- end
-		--})
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			buffer = event.buf,
+			callback = function()
+				vim.lsp.buf.format({ async = false, id = event.data.client_id })
+			end,
+		})
 	end,
 })
 
