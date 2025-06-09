@@ -21,12 +21,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
             { "]d",         vim.diagnostic.goto_prev,     desc = "Go to previous diagnostic", buffer = event.buf },
         })
         -- https://www.mitchellhanberg.com/modern-format-on-save-in-neovim/
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = event.buf,
-            callback = function()
-                vim.lsp.buf.format({ async = false, id = event.data.client_id })
-            end,
-        })
+        -- vim.api.nvim_create_autocmd("BufWritePre", {
+        --     buffer = event.buf,
+        --     callback = function()
+        --         vim.lsp.buf.format({ async = false, id = event.data.client_id })
+        --     end,
+        -- })
     end,
 })
 
@@ -96,5 +96,7 @@ which_key.add({
         mode = "n",
     },
 })
+
+vim.keymap.set("v", ";;", ":<C-u>fold<CR>", { desc = "Fold Selection", silent = true })
 -- Insert mode mapping (keep as regular keymap since which-key doesn't handle these)
 vim.keymap.set("i", "<Right>", "<Right>", { noremap = true }) -- Make the right arrow behave normally in insert mode
