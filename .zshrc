@@ -23,6 +23,7 @@ export GPG_TTY=$(tty)
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PATH="/usr/local/hive/bin:$PATH"
 export PATH="/Users/HSAJJADI/.rd/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
 
 # Theme (agnoster equivalent) - load first for prompt
 zinit ice depth=1
@@ -30,7 +31,7 @@ zinit light romkatv/powerlevel10k
 # Note: You'll need to configure p10k or use agnoster alternative below
 
 # Alternative: Use original agnoster theme
-zinit snippet OMZL::git.zsh
+# zinit snippet OMZL::git.zsh
 # zinit snippet OMZL::theme-and-appearance.zsh
 # zinit snippet OMZT::agnoster
 
@@ -39,17 +40,30 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-syntax-highlighting
 
 # Git plugin functionality
-# zinit snippet OMZP::git
+zinit snippet OMZP::git
 
 # Completion settings
 zstyle ':completion:*' rehash true
 
-# Custom prompt function for agnoster-like behavior
-#prompt_context() {
-#  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-#    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
-#  fi
-#}
+# Case-insensitive completion
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+# Menu selection for completions
+zstyle ':completion:*' menu select
+
+# Group completions by category
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%B%d%b'
+
+# Cache completions for better performance
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+# Fuzzy
+# Install fzf
+zinit ice from"gh-r" as"program"
+zinit load junegunn/fzf
+zinit light Aloxaf/fzf-tab
 
 # Aliases
 alias zshrc="vim ~/.zshrc && source ~/.zshrc"
