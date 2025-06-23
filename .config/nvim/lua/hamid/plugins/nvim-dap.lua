@@ -4,7 +4,6 @@ return {
 	config = function()
 		local dap_env = require("utils.dotenv")
 		local env = dap_env.load_env_file(vim.fn.getcwd() .. "/.env")
-		print(vim.inspect(env))
 
 		local dap = require("dap")
 		for _, configs in pairs(dap.configurations) do
