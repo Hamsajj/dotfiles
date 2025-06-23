@@ -1,6 +1,7 @@
 .run
 test-helpers
 .envrc
+.env
 .idea
 .secrets
 .secrets.*
