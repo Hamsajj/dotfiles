@@ -13,12 +13,27 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			{ "<leader>l", group = "LSP", buffer = event.buf },
 			{ "<leader>la", vim.lsp.buf.code_action, desc = "Code action", buffer = event.buf },
 			{ "<leader>lr", vim.lsp.buf.references, desc = "References", buffer = event.buf },
+			{ "<leader>li", vim.lsp.buf.implementation, desc = "Implementation", buffer = event.buf },
 			{ "<leader>ln", vim.lsp.buf.rename, desc = "Rename", buffer = event.buf },
 			{ "<leader>lw", vim.lsp.buf.workspace_symbol, desc = "Workspace symbol", buffer = event.buf },
 			{ "<leader>ld", vim.diagnostic.open_float, desc = "Open diagnostic float", buffer = event.buf },
-			{ "<leader>li", lint.try_lint, desc = "Lint current file", buffer = event.buf },
-			{ "[d", vim.diagnostic.goto_next, desc = "Go to next diagnostic", buffer = event.buf },
-			{ "]d", vim.diagnostic.goto_prev, desc = "Go to previous diagnostic", buffer = event.buf },
+			{ "<leader>lt", lint.try_lint, desc = "Lint current file", buffer = event.buf },
+			{
+				"[d",
+				function()
+					vim.diagnostic.jump({ count = 1, float = true })
+				end,
+				desc = "Go to next diagnostic",
+				buffer = event.buf,
+			},
+			{
+				"]d",
+				function()
+					vim.diagnostic.jump({ count = -1, float = true })
+				end,
+				desc = "Go to previous diagnostic",
+				buffer = event.buf,
+			},
 		})
 		-- https://www.mitchellhanberg.com/modern-format-on-save-in-neovim/
 		-- vim.api.nvim_create_autocmd("BufWritePre", {
