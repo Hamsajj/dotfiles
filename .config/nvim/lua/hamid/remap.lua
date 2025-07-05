@@ -2,99 +2,105 @@ local which_key = require("which-key")
 local builtin = require("telescope.builtin")
 
 vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-    callback = function(event)
-        local lint = require("lint")
-        -- LSP mappings using new which-key spec
-        which_key.add({
-            { "gd",         vim.lsp.buf.definition,       desc = "Go to definition",          buffer = event.buf },
-            { "gl",         vim.diagnostic.open_float,    desc = "Open diagnostic float",     buffer = event.buf },
-            { "K",          vim.lsp.buf.hover,            desc = "Show hover information",    buffer = event.buf },
-            { "<leader>l",  group = "LSP",                buffer = event.buf },
-            { "<leader>la", vim.lsp.buf.code_action,      desc = "Code action",               buffer = event.buf },
-            { "<leader>lr", vim.lsp.buf.references,       desc = "References",                buffer = event.buf },
-            { "<leader>ln", vim.lsp.buf.rename,           desc = "Rename",                    buffer = event.buf },
-            { "<leader>lw", vim.lsp.buf.workspace_symbol, desc = "Workspace symbol",          buffer = event.buf },
-            { "<leader>ld", vim.diagnostic.open_float,    desc = "Open diagnostic float",     buffer = event.buf },
-            { "<leader>li", lint.try_lint,                desc = "Lint current file",         buffer = event.buf },
-            { "[d",         vim.diagnostic.goto_next,     desc = "Go to next diagnostic",     buffer = event.buf },
-            { "]d",         vim.diagnostic.goto_prev,     desc = "Go to previous diagnostic", buffer = event.buf },
-        })
-        -- https://www.mitchellhanberg.com/modern-format-on-save-in-neovim/
-        -- vim.api.nvim_create_autocmd("BufWritePre", {
-        --     buffer = event.buf,
-        --     callback = function()
-        --         vim.lsp.buf.format({ async = false, id = event.data.client_id })
-        --     end,
-        -- })
-    end,
+	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+	callback = function(event)
+		local lint = require("lint")
+		-- LSP mappings using new which-key spec
+		which_key.add({
+			{ "gd", vim.lsp.buf.definition, desc = "Go to definition", buffer = event.buf },
+			{ "gl", vim.diagnostic.open_float, desc = "Open diagnostic float", buffer = event.buf },
+			{ "K", vim.lsp.buf.hover, desc = "Show hover information", buffer = event.buf },
+			{ "<leader>l", group = "LSP", buffer = event.buf },
+			{ "<leader>la", vim.lsp.buf.code_action, desc = "Code action", buffer = event.buf },
+			{ "<leader>lr", vim.lsp.buf.references, desc = "References", buffer = event.buf },
+			{ "<leader>ln", vim.lsp.buf.rename, desc = "Rename", buffer = event.buf },
+			{ "<leader>lw", vim.lsp.buf.workspace_symbol, desc = "Workspace symbol", buffer = event.buf },
+			{ "<leader>ld", vim.diagnostic.open_float, desc = "Open diagnostic float", buffer = event.buf },
+			{ "<leader>li", lint.try_lint, desc = "Lint current file", buffer = event.buf },
+			{ "[d", vim.diagnostic.goto_next, desc = "Go to next diagnostic", buffer = event.buf },
+			{ "]d", vim.diagnostic.goto_prev, desc = "Go to previous diagnostic", buffer = event.buf },
+		})
+		-- https://www.mitchellhanberg.com/modern-format-on-save-in-neovim/
+		-- vim.api.nvim_create_autocmd("BufWritePre", {
+		--     buffer = event.buf,
+		--     callback = function()
+		--         vim.lsp.buf.format({ async = false, id = event.data.client_id })
+		--     end,
+		-- })
+	end,
 })
 
 -- Non-LSP mappings using new which-key spec
 which_key.add({
-    { "<C-d>",     "<C-d>zz",                                 desc = "Half page down and center" },
-    { "<C-u>",     "<C-u>zz",                                 desc = "Half page up and center" },
-    { "<leader>/", "<Plug>(comment_toggle_linewise_current)", desc = "Toggle comment" },
-    { "<leader>e", "<Cmd>Neotree reveal<CR>",                 desc = "Open file explorer" },
-    { "<leader>p", '"_dP',                                    desc = "Paste without overwrite" },
-    {
-        "<leader>s",
-        ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
-        desc = "Search and replace word under cursor",
-    },
-    {
-        "J",
-        "mzJ`z",
-        desc = "Join lines and keep cursor position",
-    },
-    { "N", "Nzzzv", desc = "Previous search result and center" },
-    { "Q", "<nop>", desc = "Disable Ex mode" },
-    { "n", "nzzzv", desc = "Next search result and center" },
+	{ "<C-d>", "<C-d>zz", desc = "Half page down and center" },
+	{ "<C-u>", "<C-u>zz", desc = "Half page up and center" },
+	{ "<leader>/", "<Plug>(comment_toggle_linewise_current)", desc = "Toggle comment" },
+	{ "<leader>e", "<Cmd>Neotree reveal<CR>", desc = "Open file explorer" },
+	{ "<leader>p", '"_dP', desc = "Paste without overwrite" },
+	{
+		"<leader>s",
+		":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
+		desc = "Search and replace word under cursor",
+	},
+	{
+		"<leader>s",
+		'"hy:%s/<C-r>h/<C-r>h/gI<Left><Left><Left>',
+		desc = "Search and replace selected text",
+		mode = "v",
+	},
+	{
+		"J",
+		"mzJ`z",
+		desc = "Join lines and keep cursor position",
+	},
+	{ "N", "Nzzzv", desc = "Previous search result and center" },
+	{ "Q", "<nop>", desc = "Disable Ex mode" },
+	{ "n", "nzzzv", desc = "Next search result and center" },
 })
 
 -- Telescope mappings using new which-key spec
 which_key.add({
-    { "<leader>f",  group = "Find" },
-    { "<leader>ff", builtin.find_files, desc = "Find files" },
-    { "<leader>fg", builtin.git_files,  desc = "Find git files" },
-    { "<leader>fl", builtin.live_grep,  desc = "Live grep" },
-    { ";",          builtin.buffers,    desc = "Find Buffers" },
+	{ "<leader>f", group = "Find" },
+	{ "<leader>ff", builtin.find_files, desc = "Find files" },
+	{ "<leader>fg", builtin.git_files, desc = "Find git files" },
+	{ "<leader>fl", builtin.live_grep, desc = "Live grep" },
+	{ ";", builtin.buffers, desc = "Find Buffers" },
 })
 
 -- Visual mode mappings using new which-key spec
 which_key.add({
-    { "J",         ":m '>+1<CR>gv=gv",                       desc = "Move selection down", mode = "v" },
-    { "K",         ":m '<-2<CR>gv=gv",                       desc = "Move selection up",   mode = "v" },
-    { "<leader>/", "<Plug>(comment_toggle_linewise_visual)", desc = "Toggle comment",      mode = "v" },
+	{ "J", ":m '>+1<CR>gv=gv", desc = "Move selection down", mode = "v" },
+	{ "K", ":m '<-2<CR>gv=gv", desc = "Move selection up", mode = "v" },
+	{ "<leader>/", "<Plug>(comment_toggle_linewise_visual)", desc = "Toggle comment", mode = "v" },
 })
 
 -- Register cmp mappings with which-key for documentation purposes
 -- Note: These are just for documentation, the actual mappings are handled by cmp
 which_key.add({
-    { "<Tab>",   desc = "Next completion item / Trigger completion", mode = "i" },
-    { "<S-Tab>", desc = "Previous completion item",                  mode = "i" },
-    { "<C-.>",   desc = "Trigger completion",                        mode = { "i", "c" } },
-    { "<C-CR>",  desc = "Smart LSP action/completion",               mode = { "i", "n", "v" } },
-    { "<CR>",    desc = "Confirm completion",                        mode = "i" },
+	{ "<Tab>", desc = "Next completion item / Trigger completion", mode = "i" },
+	{ "<S-Tab>", desc = "Previous completion item", mode = "i" },
+	{ "<C-.>", desc = "Trigger completion", mode = { "i", "c" } },
+	{ "<C-CR>", desc = "Smart LSP action/completion", mode = { "i", "n", "v" } },
+	{ "<CR>", desc = "Confirm completion", mode = "i" },
 })
 
 which_key.add({
-    { "<leader>n", ":bnext<CR>", desc = "Next buffer", mode = "n" },
-    { "<leader>p", ":bprev<CR>", desc = "Prev buffer", mode = "n" },
+	{ "<leader>n", ":bnext<CR>", desc = "Next buffer", mode = "n" },
+	{ "<leader>p", ":bprev<CR>", desc = "Prev buffer", mode = "n" },
 })
 
 which_key.add({
-    {
-        "<leader>w",
-        function()
-            local picked_window_id = require("window-picker").pick_window()
-            if picked_window_id then
-                vim.api.nvim_set_current_win(picked_window_id)
-            end
-        end,
-        desc = "Window picker",
-        mode = "n",
-    },
+	{
+		"<leader>w",
+		function()
+			local picked_window_id = require("window-picker").pick_window()
+			if picked_window_id then
+				vim.api.nvim_set_current_win(picked_window_id)
+			end
+		end,
+		desc = "Window picker",
+		mode = "n",
+	},
 })
 
 vim.keymap.set("v", ";;", ":<C-u>fold<CR>", { desc = "Fold Selection", silent = true })
