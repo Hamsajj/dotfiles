@@ -8,7 +8,7 @@ function M.configure(config)
 		{ key = "v", mods = "CTRL", action = wezterm.action({ PasteFrom = "Clipboard" }) },
 		{
 			key = "q",
-			mods = "SHIFT",
+			mods = "SHIFT|CTRL",
 			action = wezterm.action.SplitPane({
 				direction = "Down",
 				size = { Percent = 30 },
@@ -16,7 +16,7 @@ function M.configure(config)
 		},
 		{
 			key = "d",
-			mods = "SHIFT",
+			mods = "SHIFT|CTRL",
 			action = wezterm.action.SplitPane({
 				direction = "Right",
 				size = { Percent = 40 },
