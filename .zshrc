@@ -63,7 +63,7 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 # Install fzf
 zinit ice from"gh-r" as"program"
 zinit load junegunn/fzf
-zinit light Aloxaf/fzf-tab
+# zinit light Aloxaf/fzf-tab
 
 # Aliases
 alias zshrc="vim ~/.zshrc && source ~/.zshrc"
