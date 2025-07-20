@@ -28,9 +28,7 @@ vim.opt.signcolumn = "yes"
 
 vim.opt.updatetime = 50
 
-vim.opt.foldmethod = "manual"
 
--- vim.opt.colorcolumn = "80"
 
---require('telescope').load_extension('fzf')
+--require('relescope').load_extension('fzf')
 require("telescope").load_extension("fzf")

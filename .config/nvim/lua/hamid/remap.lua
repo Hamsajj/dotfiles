@@ -118,6 +118,5 @@ which_key.add({
 	},
 })
 
-vim.keymap.set("v", ";;", ":<C-u>fold<CR>", { desc = "Fold Selection", silent = true })
 -- Insert mode mapping (keep as regular keymap since which-key doesn't handle these)
 vim.keymap.set("i", "<Right>", "<Right>", { noremap = true }) -- Make the right arrow behave normally in insert mode
