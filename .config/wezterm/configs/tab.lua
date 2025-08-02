@@ -39,7 +39,13 @@ function M.configure(config)
 		end
 
 		local index = tostring(tab.tab_index + 1)
+		-- if the tab title is explicitly set, take that
+
 		local title = tab.active_pane.title or ""
+		local tab_title = tab.tab_title
+		if tab_title and #tab_title > 0 then
+			title = tab_title
+		end
 
 		return {
 			{ Foreground = { Color = background } },
