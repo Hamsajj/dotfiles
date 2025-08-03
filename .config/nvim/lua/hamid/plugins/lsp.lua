@@ -19,6 +19,8 @@ return {
 		"Snikimonkd/cmp-go-pkgs",
 		"David-Kunz/cmp-npm",
 		"davidsierradz/cmp-conventionalcommits",
+		-- "tailwindlabs/tailwindcss-intellisense",
+		-- "typescript-language-server/typescript-language-server",
 	},
 	config = function()
 		vim.lsp.config("lua_ls", {
@@ -87,6 +89,8 @@ return {
 				"rust_analyzer",
 				"gopls",
 				"eslint",
+				"ts_ls",
+				"tailwindcss",
 			},
 			handlers = {
 				function(server_name)
