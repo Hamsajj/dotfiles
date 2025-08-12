@@ -19,6 +19,7 @@ return {
 		"Snikimonkd/cmp-go-pkgs",
 		"David-Kunz/cmp-npm",
 		"davidsierradz/cmp-conventionalcommits",
+		"coder3101/protols",
 		-- "tailwindlabs/tailwindcss-intellisense",
 		-- "typescript-language-server/typescript-language-server",
 	},
@@ -91,6 +92,7 @@ return {
 				"eslint",
 				"ts_ls",
 				"tailwindcss",
+				"protols",
 			},
 			handlers = {
 				function(server_name)
