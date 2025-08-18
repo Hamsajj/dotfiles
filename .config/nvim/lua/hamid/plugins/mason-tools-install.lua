@@ -1,0 +1,32 @@
+return {
+	"WhoIsSethDaniel/mason-tool-installer.nvim",
+	dependencies = {
+		"williamboman/mason.nvim",
+	},
+	opts = {
+		ensure_installed = {
+			"black",
+			"clang-format",
+			"dart-debug-adapter",
+			"eslint-lsp",
+			"eslint_d",
+			"gofumpt",
+			"goimports",
+			"golangci-lint",
+			"gopls",
+			"isort",
+			"lua-language-server",
+			"pgformatter",
+			"prettier",
+			"protolint",
+			"protols",
+			"ruff",
+			"rust-analyzer",
+			"stylua",
+			"tailwindcss-language-server",
+			"typescript-language-server",
+			"yaml-language-server",
+			"yamlfmt",
+		},
+	},
+}

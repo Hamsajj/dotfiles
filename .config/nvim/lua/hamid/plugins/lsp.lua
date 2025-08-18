@@ -1,4 +1,3 @@
--- Adapted from a combo of
 -- https://lsp-zero.netlify.app/v3.x/blog/theprimeagens-config-from-2022.html
 -- https://github.com/ThePrimeagen/init.lua/blob/master/lua/theprimeagen/lazy/lsp.lua
 return {
@@ -120,6 +119,16 @@ return {
 			},
 		})
 
+		require("lspconfig").dartls.setup({
+			capabilities = capabilities,
+			cmd = { "dart", "language-server", "--protocol=lsp" },
+			filetypes = { "dart" },
+			init_options = {
+				closingLabels = true,
+				outline = true,
+				flutterOutline = true,
+			},
+		})
 		local cmp = require("cmp")
 		local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
