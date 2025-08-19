@@ -1,5 +1,6 @@
 local which_key = require("which-key")
 local builtin = require("telescope.builtin")
+local telescope = require("telescope")
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -74,12 +75,28 @@ which_key.add({
 })
 
 -- Telescope mappings using new which-key spec
+-- which_key.add({
+-- 	{ "<leader>f", group = "Find" },
+-- 	{ "<leader>ff", builtin.find_files, desc = "Find files" },
+-- 	{ "<leader>fg", builtin.git_files, desc = "Find git files" },
+-- 	{ "<leader>fl", builtin.live_grep, desc = "Live grep" },
+-- 	{ ";", builtin.buffers, desc = "Find Buffers" },
+-- })
 which_key.add({
 	{ "<leader>f", group = "Find" },
+
+	-- telescope builtins
 	{ "<leader>ff", builtin.find_files, desc = "Find files" },
 	{ "<leader>fg", builtin.git_files, desc = "Find git files" },
 	{ "<leader>fl", builtin.live_grep, desc = "Live grep" },
 	{ ";", builtin.buffers, desc = "Find Buffers" },
+
+	-- telescope-dap
+	{ "<leader>fb", telescope.extensions.dap.commands, desc = "DAP commands" },
+	{ "<leader>fv", telescope.extensions.dap.variables, desc = "DAP variables" },
+
+	-- telescope-flutter (flutter-tools.nvim must be installed)
+	{ "<leader>fo", telescope.extensions.flutter.commands, desc = "Flutter commands" },
 })
 
 -- Visual mode mappings using new which-key spec

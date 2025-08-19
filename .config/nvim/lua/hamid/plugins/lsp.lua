@@ -119,16 +119,16 @@ return {
 			},
 		})
 
-		require("lspconfig").dartls.setup({
-			capabilities = capabilities,
-			cmd = { "dart", "language-server", "--protocol=lsp" },
-			filetypes = { "dart" },
-			init_options = {
-				closingLabels = true,
-				outline = true,
-				flutterOutline = true,
-			},
-		})
+		-- require("lspconfig").dartls.setup({
+		-- 	capabilities = capabilities,
+		-- 	cmd = { "dart", "language-server", "--protocol=lsp" },
+		-- 	filetypes = { "dart" },
+		-- 	init_options = {
+		-- 		closingLabels = true,
+		-- 		outline = true,
+		-- 		flutterOutline = true,
+		-- 	},
+		-- })
 		local cmp = require("cmp")
 		local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
