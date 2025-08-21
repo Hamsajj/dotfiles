@@ -128,3 +128,4 @@ GOPRIVATE="github.com/volvo-cars/*"
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
 export PATH="/Users/HSAJJADI/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+export PATH="/Users/HSAJJADI/flutter/flutter/bin:$PATH"

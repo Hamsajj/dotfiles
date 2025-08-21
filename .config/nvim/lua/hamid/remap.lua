@@ -89,6 +89,7 @@ which_key.add({
 	{ "<leader>ff", builtin.find_files, desc = "Find files" },
 	{ "<leader>fg", builtin.git_files, desc = "Find git files" },
 	{ "<leader>fl", builtin.live_grep, desc = "Live grep" },
+	{ "<leader>fg", builtin.grep_string, { desc = "Grep selected string" }, mode = { "v" } },
 	{ ";", builtin.buffers, desc = "Find Buffers" },
 
 	-- telescope-dap
