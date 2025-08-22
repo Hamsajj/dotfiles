@@ -28,5 +28,10 @@ vim.opt.signcolumn = "yes"
 
 vim.opt.updatetime = 50
 
+vim.filetype.add({
+	extension = {
+		arb = "json",
+	},
+})
 --require('relescope').load_extension('fzf')
 require("telescope").load_extension("fzf")

@@ -16,7 +16,14 @@ return {
 				vue = { "prettier" },
 				css = { "prettier" },
 				html = { "prettier" },
-				json = { "prettier" },
+				json = function(bufnr)
+					local filename = vim.api.nvim_buf_get_name(bufnr)
+					if filename:match("%.arb$") then
+						return { "custom_arb_format" }
+					else
+						return { "prettier" }
+					end
+				end,
 				yaml = { "yamlfmt" },
 				yml = { "yamlfmt" },
 				markdown = { "prettier" },
@@ -28,6 +35,11 @@ return {
 				custom_pg_format = {
 					command = "pg_format",
 					args = { "--no-space-function" },
+					stdin = true,
+				},
+				custom_arb_format = {
+					command = "prettier",
+					args = { "--parser", "json" },
 					stdin = true,
 				},
 			},
