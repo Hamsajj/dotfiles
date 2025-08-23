@@ -11,8 +11,13 @@ function M.configure(config)
 		},
 		emoji_font,
 	})
-	config.font_size = 12
-	config.line_height = 1.15
+	if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+        -- Windows laptop resolution is terrible, compensate with smaller font size
+		config.font_size = 9
+	else
+		config.font_size = 12
+	end
+	config.line_height = 1.1
 end
 
 return M
