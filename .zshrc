@@ -16,9 +16,8 @@ autoload -Uz compinit
 compinit -C
 
 # Environment variables
-export PATH=${HOME}/go/bin/:$PATH
-export GOPATH="$HOME/go"
-export GOPRIVATE="github.com/eMarketeerSE"
+export GOPATH="/usr/local/go"
+export PATH=${GOPATH}/bin/:$PATH
 export GPG_TTY=$(tty)
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PATH="/usr/local/hive/bin:$PATH"
@@ -96,7 +95,7 @@ fpath=(~/.zfunc $fpath)
 export NVM_DIR="$HOME/.nvm"
 if [ -s "$NVM_DIR/alias/default" ]; then
   NODE_VERSION=$(cat "$NVM_DIR/alias/default")
-  FULL_NODE_VERSION=$(command ls -d "$NVM_DIR/versions/node/v${NODE_VERSION}."* 2>/dev/null | sort -V | tail -n 1)
+  FULL_NODE_VERSION=$(command ls -d "$NVM_DIR/versions/node/${NODE_VERSION}"* 2>/dev/null | sort -V | tail -n 1)
   if [ -n "$FULL_NODE_VERSION" ]; then
     export PATH="$FULL_NODE_VERSION/bin:$PATH"
   fi
@@ -119,7 +118,7 @@ case ":$PATH:" in
 esac
 
 # Set GOPRIVATE for Volvo
-GOPRIVATE="github.com/volvo-cars/*"
+GOPRIVATE="https://github.com/epidemicsound/*"
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
