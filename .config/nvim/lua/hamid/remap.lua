@@ -83,6 +83,7 @@ which_key.add({
 -- 	{ ";", builtin.buffers, desc = "Find Buffers" },
 -- })
 which_key.add({
+	{ "<leader>b", builtin.buffers, desc = "Open buffers" },
 	{ "<leader>f", group = "Find" },
 
 	-- telescope builtins
