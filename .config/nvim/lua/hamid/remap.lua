@@ -1,6 +1,7 @@
 local which_key = require("which-key")
 local builtin = require("telescope.builtin")
 local telescope = require("telescope")
+local bufferManager = require("buffer_manager.ui")
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -44,6 +45,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		--     end,
 		-- })
 	end,
+})
+
+which_key.add({
+	{ "<M-Space>", bufferManager.toggle_quick_menu, desc = "Open buffer manager", mode = { "t", "n" } },
 })
 
 -- Non-LSP mappings using new which-key spec
