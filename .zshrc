@@ -1,3 +1,4 @@
+fpath=(/Users/hamid.sajjadi/.local/share/zsh/site-functions $fpath)
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -16,12 +17,11 @@ autoload -Uz compinit
 compinit -C
 
 # Environment variables
-export GOPATH="/usr/local/go"
+export GOPATH="${HOME}/go"
 export PATH=${GOPATH}/bin/:$PATH
 export GPG_TTY=$(tty)
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PATH="/usr/local/hive/bin:$PATH"
-export PATH="/Users/HSAJJADI/.rd/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 
 # Theme (agnoster equivalent) - load first for prompt
@@ -74,7 +74,7 @@ alias ghr="git fetch && git rebase origin/main"
 alias gam="git add . && git commit --amend --no-edit"
 alias python='python3'
 alias dps='docker ps --format "table {{.ID}}\\t{{.Image}}\\t{{.Status}}\\t{{.Names}}\\t{{.Ports}}"'
-alias cdv='cd ~/repos/volvo'
+alias cdes='cd ~/repos/epidemic'
 alias tf='tofu'
 alias ghsha='git rev-parse HEAD | striplines | pbcopy'
 alias kb='kubectl'
@@ -106,12 +106,9 @@ start_nvm() {
   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 }
 
-# Google Cloud SDK
-if [ -f '/Users/HSAJJADI/.gcp/path.zsh.inc' ]; then . '/Users/HSAJJADI/.gcp/path.zsh.inc'; fi
-if [ -f '/Users/HSAJJADI/.gcp/completion.zsh.inc' ]; then . '/Users/HSAJJADI/.gcp/completion.zsh.inc'; fi
 
 # pnpm
-export PNPM_HOME="/Users/HSAJJADI/Library/pnpm"
+export PNPM_HOME="${HOME}/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -124,7 +121,18 @@ GOPRIVATE="https://github.com/epidemicsound/*"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+export PATH="${HOME}/flutter/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/hamid.sajjadi/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/hamid.sajjadi/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/hamid.sajjadi/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/hamid.sajjadi/google-cloud-sdk/completion.zsh.inc'; fi 
+export USE_GKE_GCLOUD_AUTH_PLUGIN=true
+export PATH="${HOME}/.local/bin:$PATH"
+# To change lazygit config folder
+export XDG_CONFIG_HOME="$HOME/.config"
+
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/HSAJJADI/.rd/bin:$PATH"
+export PATH="/Users/hamid.sajjadi/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
-export PATH="/Users/HSAJJADI/flutter/flutter/bin:$PATH"
