@@ -46,10 +46,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
-local bufferManager = require("buffer_manager.ui")
-which_key.add({
-	{ "<M-Space>", bufferManager.toggle_quick_menu, desc = "Open buffer manager", mode = { "t", "n" } },
-})
 
 -- Non-LSP mappings using new which-key spec
 which_key.add({
