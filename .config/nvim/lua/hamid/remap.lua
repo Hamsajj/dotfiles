@@ -1,7 +1,6 @@
 local which_key = require("which-key")
 local builtin = require("telescope.builtin")
 local telescope = require("telescope")
-local bufferManager = require("buffer_manager.ui")
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -47,6 +46,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
+local bufferManager = require("buffer_manager.ui")
 which_key.add({
 	{ "<M-Space>", bufferManager.toggle_quick_menu, desc = "Open buffer manager", mode = { "t", "n" } },
 })
@@ -79,31 +79,31 @@ which_key.add({
 	{ "n", "nzzzv", desc = "Next search result and center" },
 })
 
--- Telescope mappings using new which-key spec
--- which_key.add({
--- 	{ "<leader>f", group = "Find" },
--- 	{ "<leader>ff", builtin.find_files, desc = "Find files" },
--- 	{ "<leader>fg", builtin.git_files, desc = "Find git files" },
--- 	{ "<leader>fl", builtin.live_grep, desc = "Live grep" },
--- 	{ ";", builtin.buffers, desc = "Find Buffers" },
--- })
+local hm = require("harpoon.mark")
+local hu = require("harpoon.ui")
 which_key.add({
-	{ "<leader>b", builtin.buffers, desc = "Open buffers" },
+	{ "<leader>h", group = "Harpoon" },
+	{ "<leader>ha", hm.add_file, desc = "Mark file" },
+	{ "<leader>a", hm.add_file, desc = "Mark file" },
+	{ "<leader>hh", hu.toggle_quick_menu, desc = "Toggle Harpoon UI" },
+})
+
+which_key.add({
 	{ "<leader>f", group = "Find" },
 
 	-- telescope builtins
 	{ "<leader>ff", builtin.find_files, desc = "Find files" },
+	{ "<leader>fb", builtin.buffers, desc = "Open buffers" },
 	{ "<leader>fg", builtin.git_files, desc = "Find git files" },
 	{ "<leader>fl", builtin.live_grep, desc = "Live grep" },
 	{ "<leader>fg", builtin.grep_string, { desc = "Grep selected string" }, mode = { "v" } },
 	{ ";", builtin.buffers, desc = "Find Buffers" },
 
-	-- telescope-dap
-	{ "<leader>fb", telescope.extensions.dap.commands, desc = "DAP commands" },
+	-- telescope-extensions
+	{ "<leader>fd", telescope.extensions.dap.commands, desc = "DAP commands" },
 	{ "<leader>fv", telescope.extensions.dap.variables, desc = "DAP variables" },
-
-	-- telescope-flutter (flutter-tools.nvim must be installed)
 	{ "<leader>fo", telescope.extensions.flutter.commands, desc = "Flutter commands" },
+	{ "<leader>fe", telescope.extensions.harpoon.marks, desc = "Harpoon marks" },
 })
 
 -- Visual mode mappings using new which-key spec
@@ -116,7 +116,7 @@ which_key.add({
 -- Register cmp mappings with which-key for documentation purposes
 -- Note: These are just for documentation, the actual mappings are handled by cmp
 which_key.add({
-	{ "<Tab>", desc = "Next completion item / Trigger completion", mode = "i" },
+	{ "<Tab>", fesc = "Next completion item / Trigger completion", mode = "i" },
 	{ "<S-Tab>", desc = "Previous completion item", mode = "i" },
 	{ "<C-.>", desc = "Trigger completion", mode = { "i", "c" } },
 	{ "<C-CR>", desc = "Smart LSP action/completion", mode = { "i", "n", "v" } },
