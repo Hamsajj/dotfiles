@@ -46,7 +46,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
-
 -- Non-LSP mappings using new which-key spec
 which_key.add({
 	{ "<C-d>", "<C-d>zz", desc = "Half page down and center" },
@@ -84,14 +83,15 @@ which_key.add({
 	{ "<leader>hh", hu.toggle_quick_menu, desc = "Toggle Harpoon UI" },
 })
 
+local fzf = require("fzf-lua")
 which_key.add({
 	{ "<leader>f", group = "Find" },
 
 	-- telescope builtins
 	{ "<leader>ff", builtin.find_files, desc = "Find files" },
 	{ "<leader>fb", builtin.buffers, desc = "Open buffers" },
-	{ "<leader>fg", builtin.git_files, desc = "Find git files" },
-	{ "<leader>fl", builtin.live_grep, desc = "Live grep" },
+	{ "<leader>fl", builtin.git_files, desc = "Find git files" },
+	{ "<leader>fg", fzf.live_grep, desc = "Live grep" },
 	{ "<leader>fg", builtin.grep_string, { desc = "Grep selected string" }, mode = { "v" } },
 	{ ";", builtin.buffers, desc = "Find Buffers" },
 
