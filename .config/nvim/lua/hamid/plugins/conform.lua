@@ -28,7 +28,7 @@ return {
 				yml = { "yamlfmt" },
 				markdown = { "prettier" },
 				lua = { "stylua" },
-				go = { "gofmt" },
+				go = { "golangci-lint" },
 				sql = { "custom_pg_format" },
 			},
 			formatters = {
