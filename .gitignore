@@ -5,6 +5,7 @@ test-helpers
 .idea
 .secrets
 .secrets.*
-lab
+**/labs
 .DS_Store
+
 

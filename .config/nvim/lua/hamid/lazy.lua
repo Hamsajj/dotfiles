@@ -15,4 +15,5 @@ require("lazy").setup({
 	spec = "hamid.plugins",
 	concurrency = jit.os:find("Windows") and (vim.uv.available_parallelism() * 2) or nil,
 	change_detection = { notify = false },
+
 })

@@ -65,7 +65,7 @@ zinit load junegunn/fzf
 # zinit light Aloxaf/fzf-tab
 
 # Aliases
-alias zshrc="vim ~/.zshrc && source ~/.zshrc"
+alias zshrc="nvim ~/.zshrc && source ~/.zshrc"
 alias ls="ls -lGH"
 alias ll="ls -lh"
 alias lt="du -sh * | sort -h"
@@ -114,8 +114,7 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-# Set GOPRIVATE for Volvo
-GOPRIVATE="https://github.com/epidemicsound/*"
+GOPRIVATE="https://github.com/epidemicsound"
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -138,7 +137,9 @@ export PATH="/Users/hamid.sajjadi/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
 ### TESTCONTAINERS WITH RANCHER DESKTOP
-export TESTCONTAINERS_HOST_OVERRIDE=$(rdctl shell ip a show rd0 | awk '/inet / {sub("/.*",""); print $2}')
+export DOCKER_HOST=unix://$HOME/.rd/docker.sock
+export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
+export TESTCONTAINERS_HOST_OVERRIDE=localhost
 
 # pnpm
 export PNPM_HOME="/Users/hamid.sajjadi/Library/pnpm"
@@ -147,3 +148,32 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+ export PATH="$PATH":"$HOME/.pub-cache/bin"
+# Add GITHUB_TOKEN used for authenticating npm
+# if [[ -e ~/.npmrc ]]; then
+#   export GITHUB_TOKEN=$(cat ~/.npmrc | grep //npm.pkg.github.com/:_authToken= | sed 's/^.*=//')
+# fi
+
+## Helpers function to cd to project directory
+cde() {
+  # Default to the epidemic path
+  local base_path="$HOME/repos/epidemic"
+  local target_dir="$1"
+
+  # Check for the 'personal' flag
+  if [[ "$1" == "-p" || "$1" == "--personal" ]]; then
+    base_path="$HOME/repos/personal"
+    # The actual directory is the second argument
+    target_dir="$2"
+  fi
+
+  # If a target directory is specified, append it to the base path
+  if [[ -n "$target_dir" ]]; then
+    cd "${base_path}/${target_dir}"
+  else
+    # If no directory is specified, go to the base path
+    # (e.g., `cde` goes to ~/repos/epidemic, `cde -p` goes to ~/repos/personal)
+    cd "${base_path}"
+  fi
+}
+
