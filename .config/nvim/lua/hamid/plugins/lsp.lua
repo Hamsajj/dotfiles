@@ -85,13 +85,13 @@ return {
 		require("mason-lspconfig").setup({
 			ensure_installed = {
 				"lua_ls",
-				"ruff",
 				"rust_analyzer",
 				"gopls",
 				"eslint",
 				"ts_ls",
 				"tailwindcss",
 				"protols",
+				"pyright",
 			},
 			handlers = {
 				function(server_name)

@@ -177,3 +177,5 @@ cde() {
   fi
 }
 
+# Added by Antigravity
+export PATH="/Users/hamid.sajjadi/.antigravity/antigravity/bin:$PATH"

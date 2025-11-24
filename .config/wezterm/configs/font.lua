@@ -15,7 +15,7 @@ function M.configure(config)
         -- Windows laptop resolution is terrible, compensate with smaller font size
 		config.font_size = 9
 	else
-		config.font_size = 12
+		config.font_size = 13
 	end
 	config.line_height = 1.1
 end
