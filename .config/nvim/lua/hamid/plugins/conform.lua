@@ -8,7 +8,7 @@ return {
 		conform.setup({
 			formatters_by_ft = {
 				cpp = { "clang-format" },
-				python = { "black" },
+				python = { "autopep8" },
 				javascript = { "prettier" },
 				typescript = { "prettier" },
 				javascriptreact = { "prettier" }, -- for .jsx files

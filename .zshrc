@@ -24,6 +24,24 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PATH="/usr/local/hive/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 
+export EDITOR=nvim
+export VISUAL=nvim
+
+
+# --- Vi mode ---
+bindkey -v
+
+# Faster mode switching
+KEYTIMEOUT=1
+
+# --- Edit command line in $EDITOR ---
+autoload -Uz edit-command-line
+zle -N edit-command-line
+
+# Bind in both modes
+# bindkey -M vicmd 'v' edit-command-line
+bindkey -M viins '^X^E' edit-command-line
+
 # Theme (agnoster equivalent) - load first for prompt
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
@@ -40,6 +58,9 @@ zinit light zsh-users/zsh-syntax-highlighting
 
 # Git plugin functionality
 zinit snippet OMZP::git
+
+
+zinit light jeffreytse/zsh-vi-mode
 
 # Completion settings
 zstyle ':completion:*' rehash true
@@ -178,4 +199,17 @@ cde() {
 }
 
 # Added by Antigravity
-export PATH="/Users/hamid.sajjadi/.antigravity/antigravity/bin:$PATH"
+export PATH="${HOME}/.antigravity/antigravity/bin:${PATH}"
+export PATH="${HOME}/.volta/bin:${PATH}"
+
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+eval "$(pyenv init --path)"
+
+
+## GO PROXY ENV VARS
+export GOPROXY="https://europe-west1-go.pkg.dev/es-shared-mgmt-02dd/eu-we1-golang,https://proxy.golang.org,direct"
+export GONOSUMDB="github.com/epidemicsound/*"
+export GOPRIVATE="github.com/epidemicsound/*"
+export GONOPROXY="github.com/GoogleCloudPlatform/artifact-registry-go-tools"
+
+alias pi="ssh berry@berry.local"

@@ -33,5 +33,13 @@ vim.filetype.add({
 		arb = "json",
 	},
 })
+
+-- Disable LSP inside Neo-tree buffers
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "neo-tree",
+	callback = function(args)
+		vim.diagnostic.enable(false, { bufnr = args.buf })
+	end,
+})
 --require('relescope').load_extension('fzf')
 require("telescope").load_extension("fzf")

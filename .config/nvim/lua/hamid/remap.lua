@@ -138,5 +138,67 @@ which_key.add({
 	},
 })
 
+local neotest = require("neotest")
+
+which_key.add({
+	{
+		"<leader>tt",
+		function()
+			neotest.run.run()
+		end,
+		desc = "Run nearest test",
+		mode = "n",
+	},
+	{
+		"<leader>td",
+		function()
+			neotest.run.run({ strategy = "dap" })
+		end,
+		desc = "Debug nearest test",
+		mode = "n",
+	},
+
+	{
+		"<leader>tf",
+		function()
+			neotest.run.run(vim.fn.expand("%"))
+		end,
+		desc = "Run tests in file",
+		mode = "n",
+	},
+	{
+		"<leader>ta",
+		function()
+			-- Run all tests in project
+			neotest.run.run(vim.fn.getcwd())
+		end,
+		desc = "Run all tests",
+		mode = "n",
+	},
+	{
+		"<leader>tp",
+		function()
+			neotest.output_panel.toggle({ enter = true })
+		end,
+		desc = "Open test output panel",
+		mode = "n",
+	},
+	{
+		"<leader>to",
+		function()
+			neotest.output.open({ enter = true })
+		end,
+		desc = "Open test output",
+		mode = "n",
+	},
+	{
+		"<leader>ts",
+		function()
+			neotest.summary.toggle({ enter = true })
+		end,
+		desc = "Open test summary",
+		mode = "n",
+	},
+})
 -- Insert mode mapping (keep as regular keymap since which-key doesn't handle these)
 vim.keymap.set("i", "<Right>", "<Right>", { noremap = true }) -- Make the right arrow behave normally in insert mode

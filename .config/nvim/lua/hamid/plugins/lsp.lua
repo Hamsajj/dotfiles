@@ -92,11 +92,20 @@ return {
 				"tailwindcss",
 				"protols",
 				"pyright",
+				"ruff",
 			},
 			handlers = {
 				function(server_name)
 					local opts = {
 						capabilities = capabilities,
+
+						on_attach = function(client, bufnr)
+							-- Prevent LSP from attaching to Neo-tree buffers
+							if vim.bo[bufnr].filetype == "neo-tree" then
+								client.stop()
+								return
+							end
+						end,
 					}
 					if server_name == "lua_ls" then
 						opts.settings = {
@@ -114,6 +123,7 @@ return {
 							},
 						}
 					end
+
 					require("lspconfig")[server_name].setup(opts)
 				end,
 			},
