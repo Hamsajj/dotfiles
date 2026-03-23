@@ -206,10 +206,13 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 eval "$(pyenv init --path)"
 
 
-## GO PROXY ENV VARS
-export GOPROXY="https://europe-west1-go.pkg.dev/es-shared-mgmt-02dd/eu-we1-golang,https://proxy.golang.org,direct"
-export GONOSUMDB="github.com/epidemicsound/*"
-export GOPRIVATE="github.com/epidemicsound/*"
-export GONOPROXY="github.com/GoogleCloudPlatform/artifact-registry-go-tools"
+# ## GO PROXY ENV VARS
+# export GOPROXY="https://europe-west1-go.pkg.dev/es-shared-mgmt-02dd/eu-we1-golang,https://proxy.golang.org,direct"
+# export GONOSUMDB="github.com/epidemicsound/*"
+# export GOPRIVATE="github.com/epidemicsound/*"
+# export GONOPROXY="github.com/GoogleCloudPlatform/artifact-registry-go-tools"
 
 alias pi="ssh berry@berry.local"
+
+# Added by Antigravity
+export PATH="/Users/hamid.sajjadi/.antigravity/antigravity/bin:$PATH"
