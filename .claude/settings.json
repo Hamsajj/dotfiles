@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude_ai_Atlassian__*",
+      "mcp__nolo__execute_script",
+      "mcp__nolo__connection_status",
+      "mcp__nolo__current_profile",
+      "mcp__nolo__list_profiles",
+      "mcp__nolo__switch_profile_readonly"
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true
+  },
+  "model": "opus[1m]"
+}

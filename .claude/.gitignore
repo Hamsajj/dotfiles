@@ -1,0 +1,27 @@
+# Secrets
+.env
+
+# Session state & history
+history.jsonl
+sessions/
+session-env/
+shell-snapshots/
+
+# Caches & temp data
+cache/
+paste-cache/
+file-history/
+backups/
+downloads/
+telemetry/
+debug/
+plans/
+
+# Runtime state
+policy-limits.json
+
+# Per-project settings (machine-specific paths)
+projects/
+
+# Plugins (managed by Claude Code)
+plugins/
