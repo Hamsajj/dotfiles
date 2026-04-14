@@ -216,3 +216,6 @@ alias pi="ssh berry@berry.local"
 
 # Added by Antigravity
 export PATH="/Users/hamid.sajjadi/.antigravity/antigravity/bin:$PATH"
+
+# Added by dbtunnel installer
+export PATH="${HOME}/.local/bin:${PATH}"

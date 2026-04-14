@@ -12,7 +12,7 @@ return {
 		require("neotest").setup({
 			adapters = {
 				require("neotest-python")({
-					dap = { justMyCode = true }, -- optional, for debugging
+					-- dap = { justMyCode = true }, -- optional, for debugging
 					is_test_file = function(file_path)
 						local file_name = file_path:match("^.+/(.+)$") or file_path
 						file_name = file_name:lower()

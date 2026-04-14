@@ -7,5 +7,5 @@ test-helpers
 .secrets.*
 **/labs
 .DS_Store
-
+.claude
 
