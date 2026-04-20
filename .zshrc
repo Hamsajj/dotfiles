@@ -170,10 +170,9 @@ case ":$PATH:" in
 esac
 # pnpm end
  export PATH="$PATH":"$HOME/.pub-cache/bin"
+
 # Add GITHUB_TOKEN used for authenticating npm
-# if [[ -e ~/.npmrc ]]; then
-#   export GITHUB_TOKEN=$(cat ~/.npmrc | grep //npm.pkg.github.com/:_authToken= | sed 's/^.*=//')
-# fi
+export GITHUB_TOKEN=$(gh auth token)
 
 ## Helpers function to cd to project directory
 cde() {

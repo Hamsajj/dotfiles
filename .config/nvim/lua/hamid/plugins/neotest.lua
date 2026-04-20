@@ -7,6 +7,8 @@ return {
 
 		-- Python adapter:
 		"nvim-neotest/neotest-python",
+		-- Go adapter:
+		"fredrikaverpil/neotest-golang",
 	},
 	config = function()
 		require("neotest").setup({
@@ -19,6 +21,7 @@ return {
 						return file_name:match("test") ~= nil and file_name:sub(-3) == ".py"
 					end,
 				}),
+				require("neotest-golang")({}),
 			},
 		})
 	end,

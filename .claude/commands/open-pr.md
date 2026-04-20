@@ -46,6 +46,7 @@ Otherwise use this structure:
 **Writing style:**
 - **Why** is the most important section — explain the problem or need that drove the change, with enough context for a reviewer who hasn't read the ticket.
 - **What** should be brief — a high-level summary of what changed, not a per-file breakdown. No need to list every file or explain every individual change.
+- for other sections, only include them if absolutely necessary. most of the time they add no real value
 - Do not leave template placeholder text in the body.
 
 **Closing footer** — append these lines at the very end of the body, in this order, when applicable:

@@ -1,6 +1,7 @@
 {
   "permissions": {
     "allow": [
+      "Read(/Users/hamid.sajjadi/repos/**)",
       "mcp__claude_ai_Atlassian__*",
       "mcp__nolo__execute_script",
       "mcp__nolo__connection_status",
@@ -9,6 +10,7 @@
       "mcp__nolo__switch_profile_readonly"
     ]
   },
+  "model": "opus[1m]",
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
@@ -16,5 +18,6 @@
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true
   },
-  "model": "opus[1m]"
+  "skipAutoPermissionPrompt": true,
+  "effortLevel": "xhigh"
 }
