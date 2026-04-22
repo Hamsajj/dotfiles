@@ -6,7 +6,7 @@ local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/s
 local M = {}
 
 function M.configure(config)
-	config.leader = { key = "Space", mods = "SHIFT", timeout_milliseconds = 1000 }
+	config.leader = { key = "s", mods = "CMD", timeout_milliseconds = 1000 }
 	config.key_tables = {
 		resize_pane = {
 			{ key = "h", action = act.AdjustPaneSize({ "Left", 2 }) },
@@ -87,6 +87,7 @@ function M.configure(config)
 		{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
 		{ key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
 		{ key = "n", mods = "LEADER", action = act.ActivatePaneDirection("Next") },
+		{ key = "Tab", mods = "CTRL", action = act.ActivatePaneDirection("Next") },
 		{ key = "e", mods = "LEADER", action = act.PaneSelect({ mode = "Activate" }) },
 		{ key = "w", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
 		{
@@ -156,22 +157,6 @@ function M.configure(config)
 			}),
 		},
 	}
-
-	-- Also accept LEADER bindings while Shift is still held,
-	-- so you can keep Shift pressed after Shift+Space.
-	local shift_variants = {}
-	for _, binding in ipairs(config.keys) do
-		if binding.mods == "LEADER" then
-			table.insert(shift_variants, {
-				key = binding.key,
-				mods = "LEADER|SHIFT",
-				action = binding.action,
-			})
-		end
-	end
-	for _, binding in ipairs(shift_variants) do
-		table.insert(config.keys, binding)
-	end
 end
 
 return M
