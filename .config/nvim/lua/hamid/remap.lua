@@ -57,7 +57,7 @@ which_key.add({
 		end,
 		desc = "Toggle file explorer",
 	},
-	{ "<leader>p", '"_dP', desc = "Paste without overwrite" },
+	{ "<leader>p", '"_dP', desc = "Paste without overwrite", mode = "v" },
 	{
 		"<leader>s",
 		":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
@@ -117,6 +117,7 @@ which_key.add({
 which_key.add({
 	{ "J", ":m '>+1<CR>gv=gv", desc = "Move selection down", mode = "v" },
 	{ "K", ":m '<-2<CR>gv=gv", desc = "Move selection up", mode = "v" },
+	{ "$", "g_", desc = "End of line (no trailing whitespace)", mode = "v" },
 	{ "<leader>/", "<Plug>(comment_toggle_linewise_visual)", desc = "Toggle comment", mode = "v" },
 })
 
