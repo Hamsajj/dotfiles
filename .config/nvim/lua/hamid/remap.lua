@@ -36,13 +36,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				buffer = event.buf,
 			},
 		})
-		-- https://www.mitchellhanberg.com/modern-format-on-save-in-neovim/
-		-- vim.api.nvim_create_autocmd("BufWritePre", {
-		--     buffer = event.buf,
-		--     callback = function()
-		--         vim.lsp.buf.format({ async = false, id = event.data.client_id })
-		--     end,
-		-- })
 	end,
 })
 
@@ -51,7 +44,19 @@ which_key.add({
 	{ "<C-d>", "<C-d>zz", desc = "Half page down and center" },
 	{ "<C-u>", "<C-u>zz", desc = "Half page up and center" },
 	{ "<leader>/", "<Plug>(comment_toggle_linewise_current)", desc = "Toggle comment" },
-	{ "<leader>e", "<Cmd>Neotree reveal<CR>", desc = "Open file explorer" },
+	{
+		"<leader>e",
+		function()
+			for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+				if vim.bo[vim.api.nvim_win_get_buf(win)].filetype == "neo-tree" then
+					vim.cmd("Neotree close")
+					return
+				end
+			end
+			vim.cmd("Neotree reveal")
+		end,
+		desc = "Toggle file explorer",
+	},
 	{ "<leader>p", '"_dP', desc = "Paste without overwrite" },
 	{
 		"<leader>s",
@@ -118,7 +123,7 @@ which_key.add({
 -- Register cmp mappings with which-key for documentation purposes
 -- Note: These are just for documentation, the actual mappings are handled by cmp
 which_key.add({
-	{ "<Tab>", fesc = "Next completion item / Trigger completion", mode = "i" },
+	{ "<Tab>", desc = "Next completion item / Trigger completion", mode = "i" },
 	{ "<S-Tab>", desc = "Previous completion item", mode = "i" },
 	{ "<C-.>", desc = "Trigger completion", mode = { "i", "c" } },
 	{ "<C-CR>", desc = "Smart LSP action/completion", mode = { "i", "n", "v" } },
@@ -206,5 +211,29 @@ which_key.add({
 		mode = "n",
 	},
 })
+
+local dap = require("dap")
+local dapui = require("dapui")
+which_key.add({
+	{ "<leader>d", group = "Debug" },
+	{ "<leader>dc", dap.continue, desc = "Continue" },
+	{ "<leader>ds", dap.step_over, desc = "Step over" },
+	{ "<leader>di", dap.step_into, desc = "Step into" },
+	{ "<leader>do", dap.step_out, desc = "Step out" },
+	{ "<leader>dr", dap.repl.open, desc = "REPL" },
+	{ "<leader>dl", dap.run_last, desc = "Run last" },
+	{
+		"<leader>dL",
+		function()
+			dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+		end,
+		desc = "Log point",
+	},
+	{ "<leader>du", dapui.open, desc = "UI open" },
+	{ "<leader>dU", dapui.close, desc = "UI close" },
+	{ "<leader>q", dap.toggle_breakpoint, desc = "Toggle breakpoint" },
+	{ "<leader>Q", dap.set_breakpoint, desc = "Set breakpoint" },
+})
+
 -- Insert mode mapping (keep as regular keymap since which-key doesn't handle these)
 vim.keymap.set("i", "<Right>", "<Right>", { noremap = true }) -- Make the right arrow behave normally in insert mode

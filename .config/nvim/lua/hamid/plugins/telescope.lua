@@ -2,11 +2,6 @@ return {
 	"nvim-telescope/telescope.nvim",
 	tag = "0.1.8",
 	dependencies = { "nvim-lua/plenary.nvim" },
-	mappings = {
-		i = {
-			["<C-s>"] = "select_vertical",
-		},
-	},
 	config = function()
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")

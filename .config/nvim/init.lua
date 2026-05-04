@@ -20,10 +20,3 @@ if vim.fn.executable(clip) == 1 then
 	})
 end
 
--- Disable LSP inside Neo-tree buffers
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "neo-tree",
-	callback = function()
-		vim.b.lsp_disable = true
-	end,
-})
