@@ -231,9 +231,11 @@ return {
 						["H"] = "toggle_hidden",
 						["/"] = "fuzzy_finder",
 						["D"] = "fuzzy_finder_directory",
+						["<leader>fi"] = "grep_in_directory",
+						["<leader>fd"] = "find_files_in_directory",
 						["#"] = "fuzzy_sorter", -- fuzzy sorting using the fzy algorithm
 						-- ["D"] = "fuzzy_sorter_directory",
-						["f"] = "noop",
+						["f"] = "find_files_in_directory",
 						["<c-x>"] = "clear_filter",
 						["[g"] = "prev_git_modified",
 						["]g"] = "next_git_modified",
@@ -261,7 +263,20 @@ return {
 					},
 				},
 
-				commands = {}, -- Add a custom command or override a global one using the same function name
+				commands = {
+					grep_in_directory = function(state)
+						local node = state.tree:get_node()
+						local path = node.type == "directory" and node:get_id()
+							or vim.fn.fnamemodify(node:get_id(), ":h")
+						require("telescope.builtin").live_grep({ search_dirs = { path } })
+					end,
+					find_files_in_directory = function(state)
+						local node = state.tree:get_node()
+						local path = node.type == "directory" and node:get_id()
+							or vim.fn.fnamemodify(node:get_id(), ":h")
+						require("telescope.builtin").find_files({ cwd = path })
+					end,
+				},
 			},
 			buffers = {
 				follow_current_file = {
