@@ -18,6 +18,7 @@ vim.opt.splitbelow = true
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true -- incremental search
+vim.opt.inccommand = "split" -- live preview for :s substitutions
 
 vim.opt.swapfile = false
 vim.opt.backup = false
