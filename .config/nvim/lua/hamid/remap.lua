@@ -83,7 +83,6 @@ which_key.add({
 	{ "<leader>hh", hu.toggle_quick_menu, desc = "Toggle Harpoon UI" },
 })
 
-local fzf = require("fzf-lua")
 which_key.add({
 	{ "<leader>f", group = "Find" },
 
@@ -91,7 +90,14 @@ which_key.add({
 	{ "<leader>ff", builtin.find_files, desc = "Find files" },
 	{ "<leader>fb", builtin.buffers, desc = "Open buffers" },
 	{ "<leader>fl", builtin.git_files, desc = "Find git files" },
-	{ "<leader>fg", fzf.live_grep, desc = "Live grep" },
+	{ "<leader>fg", builtin.live_grep, desc = "Live grep" },
+	{
+		"<leader>fG",
+		function()
+			builtin.live_grep({ additional_args = { "--no-ignore" } })
+		end,
+		desc = "Live grep (incl. ignored)",
+	},
 	{ "<leader>fg", builtin.grep_string, { desc = "Grep selected string" }, mode = { "v" } },
 	{ ";", builtin.buffers, desc = "Find Buffers" },
 

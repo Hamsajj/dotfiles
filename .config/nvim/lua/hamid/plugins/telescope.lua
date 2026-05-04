@@ -24,13 +24,19 @@ return {
 					"--column",
 					"--smart-case",
 					"--hidden",
-					"-g", "!.git",
-					"-g", "!.venv",
-					"-g", "!node_modules",
 				},
 				mappings = {
 					i = {
 						["<C-s>"] = require("telescope.actions").select_vertical,
+					},
+				},
+			},
+			pickers = {
+				find_files = {
+					find_command = {
+						"rg",
+						"--files",
+						"--hidden",
 					},
 				},
 			},
