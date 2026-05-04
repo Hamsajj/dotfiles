@@ -54,6 +54,69 @@ return {
 						library = { vim.env.VIMRUNTIME },
 						checkThirdParty = false,
 					},
+					hint = { enable = true },
+				},
+			},
+		})
+
+		vim.lsp.config("ts_ls", {
+			settings = {
+				typescript = {
+					inlayHints = {
+						includeInlayParameterNameHints = "literals",
+						includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+						includeInlayFunctionParameterTypeHints = true,
+						includeInlayVariableTypeHints = false,
+						includeInlayPropertyDeclarationTypeHints = true,
+						includeInlayFunctionLikeReturnTypeHints = true,
+						includeInlayEnumMemberValueHints = true,
+					},
+				},
+				javascript = {
+					inlayHints = {
+						includeInlayParameterNameHints = "literals",
+						includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+						includeInlayFunctionParameterTypeHints = true,
+						includeInlayVariableTypeHints = false,
+						includeInlayPropertyDeclarationTypeHints = true,
+						includeInlayFunctionLikeReturnTypeHints = true,
+						includeInlayEnumMemberValueHints = true,
+					},
+				},
+			},
+		})
+
+		vim.lsp.config("gopls", {
+			settings = {
+				gopls = {
+					hints = {
+						assignVariableTypes = true,
+						compositeLiteralFields = true,
+						compositeLiteralTypes = true,
+						constantValues = true,
+						functionTypeParameters = true,
+						parameterNames = true,
+						rangeVariableTypes = true,
+					},
+				},
+			},
+		})
+
+		vim.lsp.config("rust_analyzer", {
+			settings = {
+				["rust-analyzer"] = {
+					inlayHints = {
+						bindingModeHints = { enable = false },
+						chainingHints = { enable = true },
+						closingBraceHints = { enable = true, minLines = 25 },
+						closureReturnTypeHints = { enable = "never" },
+						lifetimeElisionHints = { enable = "never", useParameterNames = false },
+						maxLength = 25,
+						parameterHints = { enable = true },
+						reborrowHints = { enable = "never" },
+						renderColons = true,
+						typeHints = { enable = true, hideClosureInitialization = false, hideNamedConstructor = false },
+					},
 				},
 			},
 		})

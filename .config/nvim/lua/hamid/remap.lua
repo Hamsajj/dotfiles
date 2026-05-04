@@ -9,6 +9,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- LSP mappings using new which-key spec
 		which_key.add({
 			{ "gd", vim.lsp.buf.definition, desc = "Go to definition", buffer = event.buf },
+			{ "gy", vim.lsp.buf.type_definition, desc = "Go to type definition", buffer = event.buf },
 			{ "gl", vim.diagnostic.open_float, desc = "Open diagnostic float", buffer = event.buf },
 			{ "K", vim.lsp.buf.hover, desc = "Show hover information", buffer = event.buf },
 			{ "<leader>l", group = "LSP", buffer = event.buf, mode = { "n", "v" } },
@@ -19,6 +20,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			{ "<leader>lw", vim.lsp.buf.workspace_symbol, desc = "Workspace symbol", buffer = event.buf },
 			{ "<leader>ld", vim.diagnostic.open_float, desc = "Open diagnostic float", buffer = event.buf },
 			{ "<leader>lt", lint.try_lint, desc = "Lint current file", buffer = event.buf },
+			{
+				"<leader>lh",
+				function()
+					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }), { bufnr = event.buf })
+				end,
+				desc = "Toggle inlay hints",
+				buffer = event.buf,
+			},
 			{
 				"[d",
 				function()
