@@ -25,6 +25,10 @@ return {
 				},
 				view = "mini",
 			},
+			{
+				filter = { event = "notify" },
+				view = "mini",
+			},
 		},
 		presets = {
 			bottom_search = true,

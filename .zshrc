@@ -202,7 +202,7 @@ export PATH="${HOME}/.antigravity/antigravity/bin:${PATH}"
 export PATH="${HOME}/.volta/bin:${PATH}"
 
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-eval "$(pyenv init --path)"
+#eval "$(pyenv init --path)"
 
 
 # ## GO PROXY ENV VARS

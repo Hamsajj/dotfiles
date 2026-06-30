@@ -121,6 +121,26 @@ return {
 			},
 		})
 
+		vim.lsp.config("pyright", {
+			before_init = function(_, config)
+				local start = config.root_dir or vim.fn.getcwd()
+				local match = vim.fs.find({ ".venv", "venv" }, {
+					upward = true,
+					path = start,
+					type = "directory",
+				})[1]
+				if not match then
+					return
+				end
+				local python = match .. "/bin/python"
+				if vim.uv.fs_stat(python) then
+					config.settings = vim.tbl_deep_extend("force", config.settings or {}, {
+						python = { pythonPath = python },
+					})
+				end
+			end,
+		})
+
 		require("mason-lspconfig").setup({
 			ensure_installed = {
 				"lua_ls",

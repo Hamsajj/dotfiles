@@ -49,6 +49,14 @@ return {
                 row = 0,
                 col = 1
             },
+            on_attach                    = function(bufnr)
+                local gs = require('gitsigns')
+                local function map(mode, lhs, rhs)
+                    vim.keymap.set(mode, lhs, rhs, { buffer = bufnr })
+                end
+                map('n', ']c', function() gs.nav_hunk('next') end)
+                map('n', '[c', function() gs.nav_hunk('prev') end)
+            end,
         }
     end
 }
