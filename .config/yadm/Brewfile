@@ -1,0 +1,98 @@
+tap "anomalyco/tap", "https://github.com/anomalyco/homebrew-tap.git"
+tap "bufbuild/buf"
+tap "openfga/tap"
+# GitOps Continuous Delivery for Kubernetes
+brew "argocd"
+# Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
+brew "clang-format"
+# Load/unload environment variables based on $PWD
+brew "direnv"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Play, record, convert, and stream select audio and video codecs
+brew "ffmpeg"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GitHub command-line tool
+brew "gh"
+# Syntax-highlighting pager for git and diff output
+brew "git-delta"
+# Kubernetes package manager
+brew "helm"
+# Improved top (interactive process viewer)
+brew "htop"
+# Kubernetes CLI To Manage Your Clusters In Style!
+brew "k9s"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
+# Postgres C API library
+brew "libpq"
+# Utility for directing compilation
+brew "make"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Drop-in replacement for Terraform. Infrastructure as Code Tool
+brew "opentofu"
+# Python dependency management tool
+brew "pipenv"
+# Execute binaries from Python packages in isolated environments
+brew "pipx"
+# Framework for managing multi-language pre-commit hooks
+brew "pre-commit"
+# Python version management
+brew "pyenv"
+# Pyenv plugin to manage virtualenv
+brew "pyenv-virtualenv"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Parser generator tool
+brew "tree-sitter-cli"
+# Yet Another Dotfiles Manager
+brew "yadm"
+# Linter for YAML files
+brew "yamllint"
+# YAML templating tool that works on YAML structure instead of text
+brew "ytt"
+# A cross-platform CLI to interact with an OpenFGA server.
+brew "openfga/tap/fga", trusted: true
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
+vscode "anysphere.cursorpyright"
+vscode "golang.go"
+vscode "ms-python.debugpy"
+vscode "ms-python.python"
+vscode "vscodevim.vim"
+go "github.com/githubnemo/CompileDaemon"
+go "golang.org/x/tools/cmd/callgraph"
+go "github.com/go-delve/delve/cmd/dlv"
+go "github.com/davidrjenni/reftools/cmd/fillswitch"
+go "github.com/onsi/ginkgo/v2/ginkgo"
+go "github.com/abice/go-enum"
+go "mvdan.cc/gofumpt"
+go "golang.org/x/tools/cmd/goimports"
+go "github.com/twpayne/go-jsonstruct/v3/cmd/gojsonstruct"
+go "github.com/golangci/golangci-lint/v2/cmd/golangci-lint"
+go "github.com/segmentio/golines"
+go "github.com/fatih/gomodifytags"
+go "github.com/abenz1267/gomvp"
+go "golang.org/x/tools/cmd/gonew"
+go "golang.org/x/tools/gopls"
+go "github.com/cweill/gotests/gotests"
+go "gotest.tools/gotestsum"
+go "golang.org/x/vuln/cmd/govulncheck"
+go "github.com/koron/iferr"
+go "github.com/josharian/impl"
+go "github.com/tmc/json-to-struct"
+go "github.com/jesseduffield/lazygit"
+go "github.com/golang-migrate/migrate/v4/cmd/migrate"
+go "go.uber.org/mock/mockgen"
+go "github.com/ogen-go/ogen/cmd/ogen"
+go "github.com/kyoh86/richgo"
+go "github.com/sqlc-dev/sqlc/cmd/sqlc"
+go "honnef.co/go/tools/cmd/staticcheck"
+go "github.com/jackc/tern/v2"
+go "github.com/daveshanley/vacuum"
+go "github.com/google/yamlfmt/cmd/yamlfmt"
+krew "krew"
+krew "view-secret"
+npm "corepack"

@@ -1,0 +1,12 @@
+#!/bin/bash
+# Runs after `yadm clone` (prompted) or `yadm bootstrap`.
+set -euo pipefail
+
+config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/yadm"
+
+# Homebrew packages
+if command -v brew >/dev/null && [ -f "$config_dir/Brewfile" ]; then
+  brew bundle --file="$config_dir/Brewfile"
+fi
+
+# ponytail: add vim plugins / shell setup / `yadm decrypt` here when you need them
