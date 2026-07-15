@@ -6,6 +6,9 @@ return {
 		"rcarriga/nvim-notify",
 	},
 	opts = {
+		notify = {
+			enabled = false,
+		},
 		lsp = {
 			override = {
 				["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -23,10 +26,6 @@ return {
 						{ find = "; before #%d+" },
 					},
 				},
-				view = "mini",
-			},
-			{
-				filter = { event = "notify" },
 				view = "mini",
 			},
 		},

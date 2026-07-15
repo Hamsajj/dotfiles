@@ -26,7 +26,7 @@ return {
 			"typescript-language-server",
 			"yamllint",
 			"yamlfmt",
-            "flake8",
+            "ruff",
 		},
 	},
 }

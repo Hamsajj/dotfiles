@@ -8,3 +8,8 @@ test-helpers
 **/labs
 .DS_Store
 .claude
+
+
+.tokensave
+.venv
+.venv*
